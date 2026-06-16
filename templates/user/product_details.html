@@ -1,0 +1,235 @@
+{% extends 'user/user_base.html' %}
+
+{% block title %}Product Details{% endblock %}
+
+{% block content %}
+
+<style>
+
+.product-container{
+    max-width:1000px;
+    margin:40px auto;
+    background:white;
+    border-radius:15px;
+    padding:30px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.1);
+}
+
+.product-wrapper{
+    display:flex;
+    gap:40px;
+    align-items:flex-start;
+    flex-wrap:wrap;
+}
+
+.product-image{
+    flex:1;
+    min-width:320px;
+    text-align:center;
+}
+
+.product-image img{
+    width:100%;
+    max-width:380px;
+    height:350px;
+    object-fit:contain;
+    border:1px solid #ddd;
+    border-radius:12px;
+    padding:15px;
+    background:#fff;
+}
+
+.product-info{
+    flex:1;
+    min-width:350px;
+}
+
+.product-title{
+    margin-bottom:15px;
+    color:#222;
+    font-size:32px;
+}
+
+.product-info p{
+    font-size:17px;
+    line-height:1.7;
+}
+
+.product-price{
+    color:#198754;
+    margin-top:25px;
+    margin-bottom:25px;
+    font-weight:bold;
+    font-size:32px;
+}
+
+.product-buttons{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-bottom:25px;
+}
+
+.btn-cart{
+    background:#ff9900;
+    color:black;
+    padding:12px 28px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:700;
+    font-size:15px;
+}
+
+.btn-buy{
+    background:#28a745;
+    color:white;
+    padding:12px 28px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:700;
+    font-size:15px;
+}
+
+.btn-back{
+    background:#232f3e;
+    color:white;
+    padding:10px 22px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:600;
+    display:inline-block;
+}
+
+/* Mobile Responsive */
+
+@media(max-width:768px){
+
+    .product-container{
+        margin:15px;
+        padding:20px;
+    }
+
+    .product-wrapper{
+        flex-direction:column;
+        gap:25px;
+    }
+
+    .product-image,
+    .product-info{
+        min-width:100%;
+    }
+
+    .product-image img{
+        max-width:100%;
+        height:auto;
+    }
+
+    .product-title{
+        font-size:26px;
+        text-align:center;
+    }
+
+    .product-price{
+        font-size:28px;
+        text-align:center;
+    }
+
+    .product-buttons{
+        flex-direction:column;
+    }
+
+    .btn-cart,
+    .btn-buy,
+    .btn-back{
+        width:100%;
+        text-align:center;
+        box-sizing:border-box;
+    }
+
+}
+
+</style>
+
+<div class="product-container">
+
+
+<div class="product-wrapper">
+
+    <!-- Product Image -->
+
+    <div class="product-image">
+
+        <img src="/static/uploads/product_images/{{ product.image }}"
+             alt="{{ product.name }}">
+
+    </div>
+
+    <!-- Product Information -->
+
+    <div class="product-info">
+
+        <h1 class="product-title">
+
+            {{ product.name }}
+
+        </h1>
+
+        <hr>
+
+        <p>
+
+            <strong>📝 Description:</strong><br>
+            {{ product.description }}
+
+        </p>
+
+        <p>
+
+            <strong>🏷 Category:</strong>
+            {{ product.category }}
+
+        </p>
+
+        <h2 class="product-price">
+
+            ₹{{ product.price }}
+
+        </h2>
+
+        <!-- Buttons -->
+
+        <div class="product-buttons">
+
+            <a href="/user/add-to-cart/{{ product.product_id }}"
+               class="btn-cart">
+
+                🛒 Add To Cart
+
+            </a>
+
+            <a href="/user/buy-now/{{ product.product_id }}"
+               class="btn-buy">
+
+                ⚡ Buy Now
+
+            </a>
+
+        </div>
+
+        <a href="/user/products"
+           class="btn-back">
+
+            ← Back to Products
+
+        </a>
+
+    </div>
+
+</div>
+
+
+</div>
+
+{% endblock %}
+
+

@@ -1,0 +1,256 @@
+{% extends 'base.html' %}
+
+{% block title %}SmartCart{% endblock %}
+
+{% block content %}
+
+<style>
+
+.hero-section{
+    background:linear-gradient(135deg,#0d6efd,#6610f2);
+    color:white;
+    padding:60px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
+
+.hero-btn{
+    display:inline-block;
+    padding:12px 25px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+    margin:5px;
+}
+
+.shop-btn{
+    background:white;
+    color:#0d6efd;
+}
+
+.account-btn{
+    background:#ffc107;
+    color:black;
+}
+
+.feature-card{
+    min-height:250px;
+    border-radius:15px;
+    transition:0.3s;
+}
+
+.feature-card:hover{
+    transform:translateY(-5px);
+}
+
+.feature-header{
+    color:white;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:15px;
+    text-align:center;
+}
+
+.why-card{
+    background:#f8f9fa;
+    border-radius:20px;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+    .hero-section{
+        padding:35px 20px;
+    }
+
+    .hero-section h1{
+        font-size:32px !important;
+    }
+
+    .hero-section .lead{
+        font-size:18px;
+    }
+
+    .hero-btn{
+        display:block;
+        width:100%;
+        margin:10px 0;
+    }
+
+    .feature-card{
+        min-height:auto;
+    }
+
+    .why-card{
+        padding:25px !important;
+    }
+
+}
+
+</style>
+
+<div class="container mt-4">
+
+    <!-- Hero Section -->
+
+    <div class="hero-section">
+
+        <h1 class="display-4 fw-bold">
+            🛒 Welcome to SmartCart
+        </h1>
+
+        <p class="lead mt-3">
+            Your One-Stop Online Shopping Destination
+        </p>
+
+        <p class="mb-4">
+            Shop smarter with secure payments,
+            fast delivery, order tracking,
+            and a seamless shopping experience.
+        </p>
+
+        <a href="/user/products"
+           class="hero-btn shop-btn">
+
+            Start Shopping
+
+        </a>
+
+        <a href="/user-register"
+           class="hero-btn account-btn">
+
+            Create Account
+
+        </a>
+
+    </div>
+
+    <!-- Features -->
+
+    <div class="row mt-5">
+
+        <div class="col-lg-4 col-md-6 mb-4">
+
+            <div class="card border-0 shadow-sm p-4 feature-card"
+                 style="background:#eaf4ff;">
+
+                <div class="feature-header"
+                     style="background:#0d6efd;">
+
+                    <h4 class="mb-0">
+                        🔒 Secure Payments
+                    </h4>
+
+                </div>
+
+                <p class="text-center mb-0">
+
+                    Safe and secure online payments
+                    powered by Razorpay integration.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4">
+
+            <div class="card border-0 shadow-sm p-4 feature-card"
+                 style="background:#eefbf3;">
+
+                <div class="feature-header"
+                     style="background:#198754;">
+
+                    <h4 class="mb-0">
+                        🚚 Fast Delivery
+                    </h4>
+
+                </div>
+
+                <p class="text-center mb-0">
+
+                    Track your orders from
+                    packing to delivery with
+                    real-time status updates.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-4 col-md-12 mb-4">
+
+            <div class="card border-0 shadow-sm p-4 feature-card"
+                 style="background:#fff8e6;">
+
+                <div class="feature-header"
+                     style="background:#fd7e14;">
+
+                    <h4 class="mb-0">
+                        📦 Easy Order Management
+                    </h4>
+
+                </div>
+
+                <p class="text-center mb-0">
+
+                    Download invoices,
+                    manage orders,
+                    and view order history.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Why Choose SmartCart -->
+
+    <div class="mt-5">
+
+        <div class="card border-0 shadow-sm p-5 why-card">
+
+            <h2 class="text-center mb-4">
+                Why Choose SmartCart?
+            </h2>
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <p>✅ User & Admin Management</p>
+
+                    <p>✅ Product Search & Shopping Cart</p>
+
+                    <p>✅ Razorpay Payment Integration</p>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <p>✅ Invoice PDF Download</p>
+
+                    <p>✅ Order Tracking System</p>
+
+                    <p>✅ Admin Dashboard Analytics</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+

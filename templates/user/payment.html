@@ -1,0 +1,185 @@
+{% extends 'user/user_base.html' %}
+
+{% block title %}Payment{% endblock %}
+
+{% block content %}
+
+<style>
+
+.payment-container{
+    max-width:550px;
+    margin:40px auto;
+    background:white;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+    text-align:center;
+}
+
+.payment-icon{
+    font-size:70px;
+    margin-bottom:15px;
+}
+
+.payment-title{
+    color:#232f3e;
+    margin-bottom:15px;
+    font-weight:700;
+}
+
+.amount-box{
+    background:#f8f9fa;
+    padding:20px;
+    border-radius:12px;
+    margin:25px 0;
+}
+
+.amount-box h3{
+    color:#198754;
+    margin:0;
+    font-size:28px;
+}
+
+.pay-btn{
+    width:220px;
+    padding:14px;
+    background:#28a745;
+    color:white;
+    border:none;
+    border-radius:10px;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.pay-btn:hover{
+    background:#218838;
+}
+
+/* Mobile Responsive */
+
+@media(max-width:768px){
+
+    .payment-container{
+        margin:15px;
+        padding:25px;
+    }
+
+    .payment-title{
+        font-size:26px;
+    }
+
+    .amount-box h3{
+        font-size:24px;
+    }
+
+    .pay-btn{
+        width:100%;
+    }
+
+}
+
+</style>
+
+<div class="payment-container">
+
+```
+<div class="payment-icon">
+    💳
+</div>
+
+<h2 class="payment-title">
+    Complete Your Payment
+</h2>
+
+<p>
+    Secure payment powered by Razorpay
+</p>
+
+<div class="amount-box">
+
+    <h3>
+        Total Amount: ₹{{ amount }}
+    </h3>
+
+</div>
+
+<button id="rzp-button"
+        class="pay-btn">
+
+    Pay Now
+
+</button>
+```
+
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+
+var options = {
+
+    "key": "{{ key_id }}",
+    "amount": "{{ amount * 100 }}",
+    "currency": "INR",
+    "name": "SmartCart",
+    "description": "Order Payment",
+    "order_id": "{{ order_id }}",
+
+    "handler": function(response){
+
+        var form = document.createElement("form");
+
+        form.method = "POST";
+        form.action = "/verify-payment";
+
+        var fields = {
+
+            razorpay_payment_id:
+            response.razorpay_payment_id,
+
+            razorpay_order_id:
+            response.razorpay_order_id,
+
+            razorpay_signature:
+            response.razorpay_signature
+
+        };
+
+        for(var name in fields){
+
+            var input =
+            document.createElement("input");
+
+            input.type = "hidden";
+            input.name = name;
+            input.value = fields[name];
+
+            form.appendChild(input);
+
+        }
+
+        document.body.appendChild(form);
+
+        form.submit();
+
+    }
+
+};
+
+var rzp = new Razorpay(options);
+
+document.getElementById('rzp-button').onclick = function(e){
+
+    rzp.open();
+
+    e.preventDefault();
+
+};
+
+</script>
+
+{% endblock %}
+

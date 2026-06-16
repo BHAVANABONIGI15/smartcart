@@ -1,0 +1,234 @@
+{% extends 'user/user_base.html' %}
+
+{% block title %}Order Success{% endblock %}
+
+{% block content %}
+
+<style>
+
+.success-container{
+    max-width:900px;
+    margin:30px auto;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+.success-header{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.success-header h2{
+    color:#198754;
+    font-weight:700;
+}
+
+.order-info{
+    background:#f8f9fa;
+    padding:20px;
+    border-radius:12px;
+    margin-bottom:25px;
+}
+
+.order-info p{
+    margin:10px 0;
+}
+
+.items-title{
+    margin-bottom:15px;
+    color:#232f3e;
+}
+
+.order-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-bottom:25px;
+}
+
+.order-table th{
+    background:#232f3e;
+    color:white;
+    padding:12px;
+    text-align:center;
+}
+
+.order-table td{
+    padding:12px;
+    border:1px solid #ddd;
+    text-align:center;
+}
+
+.action-buttons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-top:25px;
+}
+
+.action-btn{
+    text-decoration:none;
+    color:white;
+    padding:12px 20px;
+    border-radius:10px;
+    font-weight:600;
+    text-align:center;
+}
+
+.shop-btn{
+    background:#198754;
+}
+
+.orders-btn{
+    background:#0d6efd;
+}
+
+.invoice-btn{
+    background:#212529;
+}
+
+/* Mobile Responsive */
+
+@media(max-width:768px){
+
+    .success-container{
+        margin:15px;
+        padding:20px;
+    }
+
+    .order-table{
+        display:block;
+        overflow-x:auto;
+        white-space:nowrap;
+    }
+
+    .action-buttons{
+        flex-direction:column;
+    }
+
+    .action-btn{
+        width:100%;
+        box-sizing:border-box;
+    }
+
+}
+
+</style>
+
+<div class="success-container">
+
+
+<div class="success-header">
+
+    <h2>
+        🎉 Order Placed Successfully
+    </h2>
+
+    <p>
+        Thank you for shopping with SmartCart!
+    </p>
+
+</div>
+
+<div class="order-info">
+
+    <p>
+
+        <strong>Order ID:</strong>
+        {{ order.order_id }}
+
+    </p>
+
+    <p>
+
+        <strong>Payment ID:</strong>
+        {{ order.razorpay_payment_id }}
+
+    </p>
+
+    <p>
+
+        <strong>Total Amount:</strong>
+        ₹{{ order.amount }}
+
+    </p>
+
+</div>
+
+<h3 class="items-title">
+
+    🛒 Items Ordered
+
+</h3>
+
+<table class="order-table">
+
+    <tr>
+
+        <th>Product</th>
+
+        <th>Quantity</th>
+
+        <th>Price</th>
+
+    </tr>
+
+    {% for item in items %}
+
+    <tr>
+
+        <td>
+
+            {{ item.product_name }}
+
+        </td>
+
+        <td>
+
+            {{ item.quantity }}
+
+        </td>
+
+        <td>
+
+            ₹{{ item.price }}
+
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+<div class="action-buttons">
+
+    <a href="/user/products"
+       class="action-btn shop-btn">
+
+        Continue Shopping
+
+    </a>
+
+    <a href="/user/my-orders"
+       class="action-btn orders-btn">
+
+        View My Orders
+
+    </a>
+
+    <a href="/user/download-invoice/{{ order.order_id }}"
+       class="action-btn invoice-btn">
+
+        Download Invoice
+
+    </a>
+
+</div>
+
+
+</div>
+
+{% endblock %}

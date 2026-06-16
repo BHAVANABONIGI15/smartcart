@@ -1,0 +1,182 @@
+{% extends 'user/user_base.html' %}
+
+{% block title %}Delivery Address{% endblock %}
+
+{% block content %}
+
+<style>
+
+.address-container{
+    max-width:600px;
+    margin:30px auto;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+.address-container h2{
+    text-align:center;
+    margin-bottom:25px;
+    color:#232f3e;
+}
+
+.address-container form{
+    width:100%;
+}
+
+.address-container label{
+    display:block;
+    margin-top:15px;
+    margin-bottom:6px;
+    font-weight:bold;
+}
+
+.address-container input,
+.address-container textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    font-size:15px;
+    box-sizing:border-box;
+}
+
+.address-container textarea{
+    resize:vertical;
+}
+
+.pay-btn{
+    width:100%;
+    margin-top:25px;
+    background:#ff9900;
+    color:black;
+    border:none;
+    padding:14px;
+    border-radius:10px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.pay-btn:hover{
+    background:#e68a00;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+    .address-container{
+        margin:15px;
+        padding:20px;
+    }
+
+    .address-container h2{
+        font-size:24px;
+    }
+
+    .address-container input,
+    .address-container textarea{
+        font-size:14px;
+    }
+
+    .pay-btn{
+        font-size:15px;
+        padding:12px;
+    }
+
+}
+
+</style>
+
+<div class="address-container">
+
+```
+<h2>📍 Delivery Address</h2>
+
+<form method="POST" action="/user/pay">
+
+    <label>Full Name</label>
+
+    <input type="text"
+           name="fullname"
+           placeholder="Enter Full Name"
+           required>
+
+    <label>Mobile Number</label>
+
+    <input type="tel"
+           id="mobile"
+           name="mobile"
+           maxlength="10"
+           placeholder="Enter 10 Digit Mobile Number"
+           pattern="[0-9]{10}"
+           required>
+
+    <label>Full Address</label>
+
+    <textarea name="address"
+              rows="4"
+              placeholder="House No, Street, Area"
+              required></textarea>
+
+    <label>City</label>
+
+    <input type="text"
+           name="city"
+           placeholder="Enter City"
+           required>
+
+    <label>Pincode</label>
+
+    <input type="text"
+           id="pincode"
+           name="pincode"
+           maxlength="6"
+           placeholder="Enter 6 Digit Pincode"
+           pattern="[0-9]{6}"
+           required>
+
+    <button type="submit"
+            class="pay-btn">
+
+        Continue to Payment
+
+    </button>
+
+</form>
+```
+
+</div>
+
+<script>
+
+// Mobile Number Validation
+
+document.getElementById("mobile").addEventListener("input", function() {
+
+    this.value = this.value.replace(/[^0-9]/g, '');
+
+    if(this.value.length > 10){
+        this.value = this.value.slice(0,10);
+    }
+
+});
+
+// Pincode Validation
+
+document.getElementById("pincode").addEventListener("input", function() {
+
+    this.value = this.value.replace(/[^0-9]/g, '');
+
+    if(this.value.length > 6){
+        this.value = this.value.slice(0,6);
+    }
+
+});
+
+</script>
+
+{% endblock %}
+

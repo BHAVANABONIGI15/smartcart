@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+
+{% block title %}Verify OTP{% endblock %}
+
+{% block content %}
+
+<style>
+
+.verify-card{
+    border:none;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,0.12);
+}
+
+.verify-header{
+    background:linear-gradient(135deg,#131921,#232f3e);
+    padding:25px;
+    text-align:center;
+}
+
+.verify-header h3{
+    color:white;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.verify-header p{
+    color:#d1d5db;
+    margin-bottom:0;
+    font-size:14px;
+}
+
+.input-field{
+    height:45px;
+    border-radius:10px;
+}
+
+.verify-btn{
+    background:#ff9900;
+    color:black;
+    font-weight:700;
+    padding:12px;
+    border-radius:10px;
+    border:none;
+    width:100%;
+}
+
+.back-btn{
+    background:#232f3e;
+    color:white;
+    border-radius:10px;
+    padding:10px 20px;
+    font-weight:600;
+    text-decoration:none;
+    display:inline-block;
+}
+
+.back-btn:hover{
+    color:white;
+}
+
+@media(max-width:768px){
+
+    .verify-header{
+        padding:20px 15px;
+    }
+
+    .verify-header h3{
+        font-size:24px;
+    }
+
+    .verify-header p{
+        font-size:13px;
+    }
+
+    .card-body{
+        padding:20px !important;
+    }
+
+    .input-field{
+        height:42px;
+    }
+
+    .back-btn{
+        width:100%;
+        text-align:center;
+    }
+
+}
+
+</style>
+
+<div class="container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-5 col-md-7 col-sm-10 col-12">
+
+            <div class="card verify-card mt-4">
+
+                <!-- Header -->
+
+                <div class="verify-header">
+
+                    <h3>
+                        🔐 Verify OTP
+                    </h3>
+
+                    <p>
+                        Complete your SmartCart Admin Registration
+                    </p>
+
+                </div>
+
+                <!-- Form -->
+
+                <div class="card-body p-4">
+
+                    <form method="POST"
+                          action="/verify-otp">
+
+                        <div class="mb-3">
+
+                            <label class="form-label fw-bold">
+                                Enter OTP
+                            </label>
+
+                            <input type="text"
+                                   name="otp"
+                                   class="form-control input-field"
+                                   placeholder="Enter the OTP sent to your email"
+                                   required>
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-bold">
+                                Create Password
+                            </label>
+
+                            <input type="password"
+                                   name="password"
+                                   class="form-control input-field"
+                                   placeholder="Create a secure password"
+                                   required>
+
+                        </div>
+
+                        <button type="submit"
+                                class="verify-btn">
+
+                            ✅ Verify & Register
+
+                        </button>
+
+                    </form>
+
+                    <hr>
+
+                    <div class="text-center">
+
+                        <a href="/admin-login"
+                           class="back-btn">
+
+                            🔙 Back to Login
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

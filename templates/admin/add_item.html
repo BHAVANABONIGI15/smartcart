@@ -1,0 +1,226 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Product{% endblock %}
+
+{% block content %}
+
+<style>
+
+.add-product-card{
+    border-radius:18px;
+    overflow:hidden;
+    border:none;
+    box-shadow:0 8px 20px rgba(0,0,0,0.12);
+}
+
+.add-product-header{
+    background:linear-gradient(135deg,#131921,#232f3e);
+    padding:25px;
+    text-align:center;
+}
+
+.add-product-header h3{
+    color:white;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.add-product-header p{
+    color:#d1d5db;
+    margin-bottom:0;
+    font-size:14px;
+}
+
+.form-control{
+    border-radius:10px;
+}
+
+.text-input{
+    height:48px;
+}
+
+.add-btn{
+    background:#ff9900;
+    color:black;
+    font-weight:700;
+    padding:12px;
+    border-radius:10px;
+    border:none;
+    width:100%;
+}
+
+.dashboard-btn{
+    background:#232f3e;
+    color:white;
+    border-radius:10px;
+    padding:10px 20px;
+    font-weight:600;
+    text-decoration:none;
+    display:inline-block;
+}
+
+@media(max-width:768px){
+
+    .card-body{
+        padding:20px !important;
+    }
+
+    .add-product-header{
+        padding:20px 15px;
+    }
+
+    .add-product-header h3{
+        font-size:24px;
+    }
+
+    .form-label{
+        font-size:14px;
+    }
+
+    .text-input{
+        height:45px;
+    }
+
+    .dashboard-btn{
+        width:100%;
+        text-align:center;
+    }
+
+}
+
+</style>
+
+<div class="container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-7 col-md-9 col-sm-11 col-12">
+
+            <div class="card add-product-card mt-4">
+
+                <!-- Header -->
+
+                <div class="add-product-header">
+
+                    <h3>
+                        📦 Add New Product
+                    </h3>
+
+                    <p>
+                        Add products to your SmartCart inventory
+                    </p>
+
+                </div>
+
+                <!-- Form -->
+
+                <div class="card-body p-4">
+
+                    <form method="POST"
+                          action="/admin/add-item"
+                          enctype="multipart/form-data">
+
+                        <div class="mb-3">
+
+                            <label class="form-label fw-bold">
+                                Product Name
+                            </label>
+
+                            <input type="text"
+                                   name="name"
+                                   class="form-control text-input"
+                                   placeholder="Enter product name"
+                                   required>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label fw-bold">
+                                Description
+                            </label>
+
+                            <textarea name="description"
+                                      class="form-control"
+                                      rows="4"
+                                      placeholder="Enter product description"
+                                      required></textarea>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label fw-bold">
+                                Category
+                            </label>
+
+                            <input type="text"
+                                   name="category"
+                                   class="form-control text-input"
+                                   placeholder="Enter category"
+                                   required>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label fw-bold">
+                                Price (₹)
+                            </label>
+
+                            <input type="number"
+                                   step="0.01"
+                                   name="price"
+                                   class="form-control text-input"
+                                   placeholder="Enter product price"
+                                   required>
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-bold">
+                                Product Image
+                            </label>
+
+                            <input type="file"
+                                   name="image"
+                                   accept="image/*"
+                                   class="form-control"
+                                   required>
+
+                        </div>
+
+                        <button type="submit"
+                                class="add-btn">
+
+                            ➕ Add Product
+
+                        </button>
+
+                    </form>
+
+                    <hr>
+
+                    <div class="text-center">
+
+                        <a href="/admin-dashboard"
+                           class="dashboard-btn">
+
+                            🏠 Admin Dashboard
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

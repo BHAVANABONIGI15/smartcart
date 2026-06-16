@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+
+{% block title %}All Orders{% endblock %}
+
+{% block content %}
+
+<style>
+
+.orders-card{
+    border:none;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,0.12);
+}
+
+.orders-header{
+    background:linear-gradient(135deg,#131921,#232f3e);
+    padding:20px;
+    text-align:center;
+}
+
+.orders-header h2{
+    color:white;
+    margin:0;
+    font-weight:700;
+}
+
+.update-btn{
+    width:100%;
+}
+
+@media(max-width:768px){
+
+    .orders-header h2{
+        font-size:24px;
+    }
+
+    .table{
+        font-size:13px;
+    }
+
+    .form-select{
+        min-width:160px;
+    }
+
+    .update-btn{
+        margin-top:8px;
+    }
+
+}
+
+</style>
+
+<div class="container mt-4">
+
+    <div class="card orders-card">
+
+        <!-- Header -->
+
+        <div class="orders-header">
+
+            <h2>
+                📦 All Orders
+            </h2>
+
+        </div>
+
+        <!-- Body -->
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped align-middle">
+
+                    <thead class="table-dark">
+
+                        <tr>
+
+                            <th>Order ID</th>
+                            <th>User ID</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {% for order in orders %}
+
+                        <tr>
+
+                            <td>
+                                {{ order.order_id }}
+                            </td>
+
+                            <td>
+                                {{ order.user_id }}
+                            </td>
+
+                            <td>
+                                ₹{{ order.amount }}
+                            </td>
+
+                            <td>
+
+                                <form method="POST"
+                                      action="/admin/update-order-status/{{ order.order_id }}">
+
+                                    <select name="status"
+                                            class="form-select">
+
+                                        <option value="To Be Packed"
+                                        {% if order.status == 'To Be Packed' %}selected{% endif %}>
+                                            To Be Packed
+                                        </option>
+
+                                        <option value="Packed"
+                                        {% if order.status == 'Packed' %}selected{% endif %}>
+                                            Packed
+                                        </option>
+
+                                        <option value="Shipped"
+                                        {% if order.status == 'Shipped' %}selected{% endif %}>
+                                            Shipped
+                                        </option>
+
+                                        <option value="Out For Delivery"
+                                        {% if order.status == 'Out For Delivery' %}selected{% endif %}>
+                                            Out For Delivery
+                                        </option>
+
+                                        <option value="Delivered"
+                                        {% if order.status == 'Delivered' %}selected{% endif %}>
+                                            Delivered
+                                        </option>
+
+                                    </select>
+
+                                    <button type="submit"
+                                            class="btn btn-primary btn-sm mt-2 update-btn">
+
+                                        Update
+
+                                    </button>
+
+                                </form>
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <div class="text-center mt-4">
+
+                <a href="/admin-dashboard"
+                   class="btn btn-dark">
+
+                    🏠 Admin Dashboard
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+

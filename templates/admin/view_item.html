@@ -1,0 +1,252 @@
+{% extends 'base.html' %}
+
+{% block title %}Product Details{% endblock %}
+
+{% block content %}
+
+<style>
+
+.product-card{
+    border:none;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,0.12);
+}
+
+.product-header{
+    background:linear-gradient(135deg,#131921,#232f3e);
+    padding:25px;
+    text-align:center;
+}
+
+.product-header h3{
+    color:white;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.product-header p{
+    color:#d1d5db;
+    margin-bottom:0;
+    font-size:14px;
+}
+
+.product-image{
+    max-height:280px;
+    max-width:100%;
+    border-radius:15px;
+    border:1px solid #e5e7eb;
+    padding:10px;
+}
+
+.info-box{
+    background:#f8fafc;
+    border-radius:10px;
+    padding:15px;
+    height:100%;
+}
+
+.price-box{
+    background:#ecfdf5;
+    border-radius:10px;
+    border-left:5px solid #22c55e;
+    padding:15px;
+}
+
+.action-btn{
+    padding:10px 25px;
+    border-radius:10px;
+    font-weight:700;
+}
+
+.back-btn{
+    background:#232f3e;
+    color:white;
+    border-radius:10px;
+    padding:10px 20px;
+    font-weight:600;
+    text-decoration:none;
+    display:inline-block;
+}
+
+.back-btn:hover{
+    color:white;
+}
+
+/* Mobile Responsive */
+
+@media(max-width:768px){
+
+    .product-header{
+        padding:20px 15px;
+    }
+
+    .product-header h3{
+        font-size:24px;
+    }
+
+    .product-header p{
+        font-size:13px;
+    }
+
+    .card-body{
+        padding:20px !important;
+    }
+
+    .product-image{
+        max-height:220px;
+    }
+
+    .action-btn{
+        width:100%;
+        margin-bottom:10px;
+    }
+
+    .back-btn{
+        width:100%;
+        text-align:center;
+    }
+
+}
+
+</style>
+
+<div class="container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8 col-md-10 col-sm-12">
+
+            <div class="card product-card mt-4">
+
+                <!-- Header -->
+
+                <div class="product-header">
+
+                    <h3>
+                        📦 Product Details
+                    </h3>
+
+                    <p>
+                        View complete product information
+                    </p>
+
+                </div>
+
+                <!-- Product Details -->
+
+                <div class="card-body p-4">
+
+                    <div class="text-center mb-4">
+
+                        <img src="/static/uploads/product_images/{{ product.image }}"
+                             class="img-fluid product-image">
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+
+                            <div class="info-box">
+
+                                <strong>📦 Product Name</strong>
+
+                                <p class="mb-0 mt-2">
+                                    {{ product.name }}
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+
+                            <div class="info-box">
+
+                                <strong>🏷 Category</strong>
+
+                                <p class="mb-0 mt-2">
+                                    {{ product.category }}
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-12 mb-3">
+
+                            <div class="info-box">
+
+                                <strong>📝 Description</strong>
+
+                                <p class="mb-0 mt-2">
+                                    {{ product.description }}
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-12 mb-4">
+
+                            <div class="price-box">
+
+                                <strong style="font-size:18px;">
+                                    💰 Price
+                                </strong>
+
+                                <h3 class="mt-2 mb-0 text-success">
+                                    ₹{{ product.price }}
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Buttons -->
+
+                    <div class="text-center mb-4">
+
+                        <a href="/user/add-to-cart/{{ product.product_id }}"
+                           class="btn btn-warning action-btn">
+
+                            🛒 Add to Cart
+
+                        </a>
+
+                        <a href="/buy-now/{{ product.product_id }}"
+                           class="btn btn-success action-btn">
+
+                            ⚡ Buy Now
+
+                        </a>
+
+                    </div>
+
+                    <div class="text-center">
+
+                        <a href="/admin/item-list"
+                           class="back-btn">
+
+                            📋 Back to Products
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+

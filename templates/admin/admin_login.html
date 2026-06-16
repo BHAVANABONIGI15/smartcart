@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Login{% endblock %}
+
+{% block content %}
+
+<style>
+
+.admin-login-card{
+    border:none;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,0.12);
+}
+
+.admin-login-header{
+    background:linear-gradient(135deg,#0f172a,#1e3a5f);
+    padding:30px;
+    text-align:center;
+}
+
+.admin-login-header h2{
+    color:white;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.admin-login-header p{
+    color:#e2e8f0;
+    margin-bottom:0;
+}
+
+.form-control{
+    border-radius:10px;
+}
+
+.login-input{
+    height:50px;
+}
+
+.login-btn{
+    background:#0d6efd;
+    color:white;
+    font-weight:600;
+    padding:12px;
+    border-radius:10px;
+    border:none;
+    width:100%;
+    transition:0.3s;
+}
+
+.login-btn:hover{
+    background:#0b5ed7;
+}
+
+.signup-link{
+    text-decoration:none;
+    font-weight:bold;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+    .admin-login-header{
+        padding:20px 15px;
+    }
+
+    .admin-login-header h2{
+        font-size:28px;
+    }
+
+    .admin-login-header p{
+        font-size:14px;
+    }
+
+    .card-body{
+        padding:20px !important;
+    }
+
+    .login-input{
+        height:45px;
+    }
+
+    .login-btn{
+        padding:10px;
+    }
+
+}
+
+</style>
+
+<div class="container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-5 col-md-7 col-sm-10 col-12">
+
+            <div class="card admin-login-card mt-5">
+
+                <!-- Header -->
+
+                <div class="admin-login-header">
+
+                    <h2>
+                        🔐 Admin Login
+                    </h2>
+
+                    <p>
+                        Access SmartCart Admin Dashboard
+                    </p>
+
+                </div>
+
+                <!-- Form -->
+
+                <div class="card-body p-4">
+
+                    <form method="POST"
+                          action="/admin-login">
+
+                        <div class="mb-3">
+
+                            <label class="form-label fw-bold">
+                                Email Address
+                            </label>
+
+                            <input type="email"
+                                   name="email"
+                                   class="form-control login-input"
+                                   placeholder="Enter your email"
+                                   required>
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-bold">
+                                Password
+                            </label>
+
+                            <input type="password"
+                                   name="password"
+                                   class="form-control login-input"
+                                   placeholder="Enter your password"
+                                   required>
+
+                        </div>
+
+                        <button type="submit"
+                                class="login-btn">
+
+                            🔐 Login
+
+                        </button>
+
+                    </form>
+
+                    <hr>
+
+                    <div class="text-center">
+
+                        <p class="mb-2 text-muted">
+
+                            Don't have an account?
+
+                        </p>
+
+                        <a href="/admin-signup"
+                           class="signup-link">
+
+                            Create Admin Account
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+

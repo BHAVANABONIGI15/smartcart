@@ -1,0 +1,120 @@
+{% extends 'user/user_base.html' %}
+
+{% block title %}Payment Success{% endblock %}
+
+{% block content %}
+
+<style>
+
+.payment-success-container{
+    max-width:700px;
+    margin:40px auto;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+    text-align:center;
+}
+
+.success-icon{
+    font-size:70px;
+    margin-bottom:15px;
+}
+
+.success-title{
+    color:#198754;
+    font-size:32px;
+    font-weight:700;
+    margin-bottom:25px;
+}
+
+.payment-info{
+    background:#f8f9fa;
+    padding:20px;
+    border-radius:12px;
+    margin:20px 0;
+    text-align:left;
+}
+
+.payment-info p{
+    margin:12px 0;
+    word-break:break-word;
+}
+
+.shop-btn{
+    display:inline-block;
+    margin-top:20px;
+    background:#0d6efd;
+    color:white;
+    text-decoration:none;
+    padding:12px 25px;
+    border-radius:10px;
+    font-weight:600;
+}
+
+/* Mobile Responsive */
+
+@media(max-width:768px){
+
+    .payment-success-container{
+        margin:15px;
+        padding:25px;
+    }
+
+    .success-title{
+        font-size:26px;
+    }
+
+    .shop-btn{
+        width:100%;
+        box-sizing:border-box;
+    }
+
+}
+
+</style>
+
+<div class="payment-success-container">
+
+
+<div class="success-icon">
+    ✅
+</div>
+
+<h2 class="success-title">
+    Payment Successful
+</h2>
+
+<p>
+    Thank you! Your payment has been completed successfully.
+</p>
+
+<div class="payment-info">
+
+    <p>
+
+        <strong>Payment ID:</strong>
+        {{ payment_id }}
+
+    </p>
+
+    <p>
+
+        <strong>Order ID:</strong>
+        {{ order_id }}
+
+    </p>
+
+</div>
+
+<a href="/user/products"
+   class="shop-btn">
+
+    🛍 Continue Shopping
+
+</a>
+
+
+</div>
+
+{% endblock %}

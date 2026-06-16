@@ -1,0 +1,261 @@
+{% extends 'user/user_base.html' %}
+
+{% block title %}All Products{% endblock %}
+
+{% block content %}
+
+<style>
+
+.products-title{
+    text-align:center;
+    margin-bottom:20px;
+    color:#232f3e;
+}
+
+.product-container{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;
+}
+
+.product-card{
+    width:220px;
+    border:1px solid #ddd;
+    padding:15px;
+    border-radius:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+    text-align:center;
+    background:white;
+    transition:0.3s;
+}
+
+.product-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 6px 15px rgba(0,0,0,0.15);
+}
+
+.product-card img{
+    width:100%;
+    max-width:160px;
+    height:140px;
+    object-fit:contain;
+    margin-bottom:10px;
+}
+
+.product-card h3{
+    margin:8px 0;
+    font-size:18px;
+    color:#222;
+}
+
+.product-card p{
+    margin:4px 0;
+    color:#666;
+}
+
+.product-price{
+    color:#198754;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:8px;
+    padding:8px 12px;
+    border-radius:6px;
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:600;
+}
+
+.view-btn{
+    background:#0d6efd;
+}
+
+.cart-btn{
+    background:#198754;
+}
+
+.buy-btn{
+    background:#ff9900;
+    color:black;
+}
+
+.search-filter-container{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    margin:25px 0;
+    flex-wrap:wrap;
+}
+
+.search-filter-container form{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.search-filter-container input,
+.search-filter-container select{
+    width:250px;
+    padding:10px;
+    border:1px solid #ddd;
+    border-radius:8px;
+}
+
+.search-filter-container button{
+    padding:10px 15px;
+    border:none;
+    border-radius:8px;
+    background:#0d6efd;
+    color:white;
+    cursor:pointer;
+}
+
+/* Mobile Responsive */
+
+@media(max-width:768px){
+
+    .product-card{
+        width:100%;
+        max-width:320px;
+    }
+
+    .product-card img{
+        max-width:140px;
+        height:120px;
+    }
+
+    .search-filter-container{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .search-filter-container form{
+        width:100%;
+        justify-content:center;
+    }
+
+    .search-filter-container input,
+    .search-filter-container select,
+    .search-filter-container button{
+        width:100%;
+        max-width:320px;
+    }
+
+    .btn{
+        display:block;
+        width:100%;
+        box-sizing:border-box;
+        margin-top:10px;
+    }
+
+}
+
+</style>
+
+<h2 class="products-title">
+    🛍 All Products
+</h2>
+
+<div class="search-filter-container">
+
+    <form method="GET" action="/user/products">
+
+        <input type="text"
+               name="search"
+               placeholder="Search product..."
+               value="{{ request.args.get('search', '') }}">
+
+        <button type="submit">
+            Search
+        </button>
+
+    </form>
+
+    <form method="GET" action="/user/products">
+
+        <select name="category">
+
+            <option value="">All Categories</option>
+
+            {% for cat in categories %}
+
+            <option value="{{ cat.category }}"
+                {% if request.args.get('category') == cat.category %}
+                    selected
+                {% endif %}>
+
+                {{ cat.category }}
+
+            </option>
+
+            {% endfor %}
+
+        </select>
+
+        <button type="submit">
+            Filter
+        </button>
+
+    </form>
+
+</div>
+
+<hr>
+
+<div class="product-container">
+
+{% for product in products %}
+
+<div class="product-card">
+
+    <img src="/static/uploads/product_images/{{ product.image }}"
+         alt="{{ product.name }}">
+
+    <h3>
+        {{ product.name }}
+    </h3>
+
+    <p>
+        {{ product.category }}
+    </p>
+
+    <p class="product-price">
+        ₹{{ product.price }}
+    </p>
+
+    <a class="btn view-btn"
+       href="/user/product/{{ product.product_id }}">
+
+       View Details
+
+    </a>
+
+    <a class="btn cart-btn"
+       href="/user/add-to-cart/{{ product.product_id }}">
+
+       Add To Cart
+
+    </a>
+
+    <a class="btn buy-btn"
+       href="/user/buy-now/{{ product.product_id }}">
+
+       BUY NOW
+
+    </a>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}
+
+
+

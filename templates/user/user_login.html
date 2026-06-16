@@ -1,0 +1,197 @@
+{% extends 'base.html' %}
+
+{% block title %}User Login{% endblock %}
+
+{% block content %}
+
+<style>
+
+.login-container{
+    padding:20px;
+}
+
+.login-card{
+    border-radius:18px;
+    overflow:hidden;
+    border:none;
+    box-shadow:0 8px 20px rgba(0,0,0,0.12);
+}
+
+.login-header{
+    background:linear-gradient(135deg,#0f172a,#1e3a5f);
+    padding:25px;
+    text-align:center;
+}
+
+.login-header h3{
+    color:white;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.login-header p{
+    color:#e2e8f0;
+    margin-bottom:0;
+    font-size:14px;
+}
+
+.login-body{
+    padding:25px;
+}
+
+.form-label{
+    font-weight:600;
+}
+
+.form-control{
+    height:48px;
+    border-radius:10px;
+}
+
+.login-btn{
+    background:#0d6efd;
+    color:white;
+    font-weight:600;
+    padding:12px;
+    border-radius:10px;
+    border:none;
+    width:100%;
+}
+
+.login-btn:hover{
+    background:#0b5ed7;
+}
+
+.signup-link{
+    text-decoration:none;
+    font-weight:bold;
+}
+
+@media(max-width:768px){
+
+    .login-container{
+        padding:10px;
+    }
+
+    .login-header{
+        padding:20px 15px;
+    }
+
+    .login-header h3{
+        font-size:24px;
+    }
+
+    .login-body{
+        padding:20px 15px;
+    }
+
+    .form-control{
+        height:45px;
+        font-size:14px;
+    }
+
+    .login-btn{
+        padding:10px;
+    }
+
+}
+
+</style>
+
+<div class="container login-container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-5 col-md-7 col-sm-10 col-12">
+
+            <div class="card login-card mt-3">
+
+                <!-- Header -->
+
+                <div class="login-header">
+
+                    <h3>
+                        👤 User Login
+                    </h3>
+
+                    <p>
+                        Login to your SmartCart account
+                    </p>
+
+                </div>
+
+                <!-- Form -->
+
+                <div class="login-body">
+
+                    <form method="POST"
+                          action="/user-login">
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Email Address
+                            </label>
+
+                            <input type="email"
+                                   name="email"
+                                   class="form-control"
+                                   placeholder="Enter your email"
+                                   required>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Password
+                            </label>
+
+                            <input type="password"
+                                   name="password"
+                                   class="form-control"
+                                   placeholder="Enter your password"
+                                   required>
+
+                        </div>
+
+                        <button type="submit"
+                                class="login-btn">
+
+                            🔑 Login
+
+                        </button>
+
+                    </form>
+
+                    <hr class="my-3">
+
+                    <div class="text-center">
+
+                        <p class="mb-1 text-muted">
+                            Don't have an account?
+                        </p>
+
+                        <a href="/user-register"
+                           class="signup-link">
+
+                            Create Account
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+

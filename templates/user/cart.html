@@ -1,0 +1,347 @@
+{% extends 'user/user_base.html' %}
+
+{% block title %}My Cart{% endblock %}
+
+{% block content %}
+
+<style>
+
+.cart-container{
+    max-width:1200px;
+    margin:30px auto;
+    padding:15px;
+}
+
+.cart-title{
+    color:#232f3e;
+    margin-bottom:25px;
+    text-align:center;
+}
+
+.cart-table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+
+.cart-table th{
+    background:#232f3e;
+    color:white;
+    padding:15px;
+    text-align:center;
+}
+
+.cart-table td{
+    padding:15px;
+    text-align:center;
+    border-bottom:1px solid #eee;
+}
+
+.cart-table img{
+    width:80px;
+    height:80px;
+    object-fit:contain;
+}
+
+.qty-btn{
+    text-decoration:none;
+    font-size:18px;
+    margin:0 8px;
+}
+
+.remove-link{
+    color:red;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.cart-summary-card{
+    margin-top:25px;
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+
+.cart-buttons{
+    display:flex;
+    gap:15px;
+    margin-top:15px;
+    flex-wrap:wrap;
+}
+
+.cart-btn{
+    text-decoration:none;
+    padding:12px 20px;
+    border-radius:10px;
+    font-weight:bold;
+    text-align:center;
+}
+
+.shop-btn{
+    background:#198754;
+    color:white;
+}
+
+.checkout-btn{
+    background:#0d6efd;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+/* Mobile Responsive */
+
+@media(max-width:768px){
+
+    .cart-table,
+    .cart-table thead,
+    .cart-table tbody,
+    .cart-table th,
+    .cart-table td,
+    .cart-table tr{
+        display:block;
+        width:100%;
+    }
+
+    .cart-table thead{
+        display:none;
+    }
+
+    .cart-table tr{
+        background:white;
+        margin-bottom:15px;
+        border-radius:15px;
+        box-shadow:0 4px 12px rgba(0,0,0,0.08);
+        padding:10px;
+    }
+
+    .cart-table td{
+        border:none;
+        text-align:center;
+        padding:10px;
+    }
+
+    .cart-table img{
+        width:100px;
+        height:100px;
+    }
+
+    .cart-buttons{
+        flex-direction:column;
+    }
+
+    .cart-btn,
+    .checkout-btn{
+        width:100%;
+    }
+
+}
+
+</style>
+
+<div class="cart-container">
+
+<h2 class="cart-title">
+    🛒 My Cart
+</h2>
+
+{% if not cart %}
+
+<div style="
+background:white;
+padding:30px;
+border-radius:15px;
+text-align:center;
+box-shadow:0 4px 12px rgba(0,0,0,0.08);">
+
+```
+<h4>Your cart is empty.</h4>
+
+<a href="/user/products"
+   class="cart-btn shop-btn">
+
+    Shop Now
+
+</a>
+```
+
+</div>
+
+{% else %}
+
+<form method="POST" action="/checkout">
+
+<table class="cart-table">
+
+```
+<thead>
+
+    <tr>
+
+        <th>Select</th>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th>Action</th>
+
+    </tr>
+
+</thead>
+
+<tbody>
+
+{% for pid, item in cart.items() %}
+
+<tr>
+
+    <td>
+
+        <input type="checkbox"
+               class="product-check"
+               data-price="{{ item.price * item.quantity }}"
+               name="selected_products"
+               value="{{ pid }}">
+
+    </td>
+
+    <td>
+
+        <img src="/static/uploads/product_images/{{ item.image }}">
+
+    </td>
+
+    <td>
+
+        {{ item.name }}
+
+    </td>
+
+    <td>
+
+        ₹{{ item.price }}
+
+    </td>
+
+    <td>
+
+        <a href="/user/cart/decrease/{{ pid }}"
+           class="qty-btn">
+
+           ➖
+
+        </a>
+
+        {{ item.quantity }}
+
+        <a href="/user/cart/increase/{{ pid }}"
+           class="qty-btn">
+
+           ➕
+
+        </a>
+
+    </td>
+
+    <td>
+
+        ₹{{ item.price * item.quantity }}
+
+    </td>
+
+    <td>
+
+        <a href="/user/cart/remove/{{ pid }}"
+           class="remove-link">
+
+           Remove
+
+        </a>
+
+    </td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+```
+
+</table>
+
+<div class="cart-summary-card">
+
+```
+<h3>
+
+    Selected Total:
+    ₹<span id="selected-total">0</span>
+
+</h3>
+
+<div class="cart-buttons">
+
+    <a href="/user/products"
+       class="cart-btn shop-btn">
+
+        Continue Shopping
+
+    </a>
+
+    <button type="submit"
+            class="cart-btn checkout-btn">
+
+        Checkout
+
+    </button>
+
+</div>
+```
+
+</div>
+
+</form>
+
+{% endif %}
+
+</div>
+
+<script>
+
+const checkboxes = document.querySelectorAll('.product-check');
+const totalElement = document.getElementById('selected-total');
+
+function updateTotal() {
+
+    let total = 0;
+
+    checkboxes.forEach(cb => {
+
+        if(cb.checked){
+            total += parseFloat(cb.dataset.price);
+        }
+
+    });
+
+    totalElement.innerText = total;
+
+}
+
+checkboxes.forEach(cb => {
+    cb.addEventListener('change', updateTotal);
+});
+
+updateTotal();
+
+</script>
+
+{% endblock %}
+
+
+
+

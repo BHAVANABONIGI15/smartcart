@@ -1,0 +1,242 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+
+<style>
+
+.dashboard-title{
+    text-align:center;
+    margin-bottom:35px;
+    color:#232f3e;
+    font-weight:700;
+}
+
+.dashboard-card{
+    border:none;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.1);
+    transition:0.3s;
+    height:100%;
+}
+
+.dashboard-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.15);
+}
+
+.dashboard-card .card-body{
+    padding:25px;
+}
+
+.dashboard-icon{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.dashboard-count{
+    font-size:28px;
+    font-weight:700;
+    color:#232f3e;
+}
+
+.dashboard-text{
+    color:#666;
+    margin-bottom:0;
+}
+
+.action-section{
+    text-align:center;
+    margin-top:35px;
+}
+
+.action-btn{
+    margin:8px;
+    min-width:180px;
+    font-weight:600;
+    border-radius:10px;
+    padding:10px 20px;
+}
+
+/* Mobile Responsive */
+
+@media(max-width:768px){
+
+    .dashboard-title{
+        font-size:26px;
+    }
+
+    .dashboard-card .card-body{
+        padding:20px;
+    }
+
+    .dashboard-icon{
+        font-size:34px;
+    }
+
+    .dashboard-count{
+        font-size:24px;
+    }
+
+    .action-btn{
+        width:100%;
+        margin:8px 0;
+    }
+
+}
+
+</style>
+
+<div class="container mt-4">
+
+    <h2 class="dashboard-title">
+
+        👋 Welcome, {{ admin_name }}
+
+    </h2>
+
+    <div class="row">
+
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+
+            <div class="card dashboard-card">
+
+                <div class="card-body text-center">
+
+                    <div class="dashboard-icon">
+                        👥
+                    </div>
+
+                    <div class="dashboard-count">
+                        {{ total_users }}
+                    </div>
+
+                    <p class="dashboard-text">
+                        Total Users
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+
+            <div class="card dashboard-card">
+
+                <div class="card-body text-center">
+
+                    <div class="dashboard-icon">
+                        📦
+                    </div>
+
+                    <div class="dashboard-count">
+                        {{ total_products }}
+                    </div>
+
+                    <p class="dashboard-text">
+                        Total Products
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+
+            <div class="card dashboard-card">
+
+                <div class="card-body text-center">
+
+                    <div class="dashboard-icon">
+                        🛒
+                    </div>
+
+                    <div class="dashboard-count">
+                        {{ total_orders }}
+                    </div>
+
+                    <p class="dashboard-text">
+                        Total Orders
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+
+            <div class="card dashboard-card">
+
+                <div class="card-body text-center">
+
+                    <div class="dashboard-icon">
+                        💰
+                    </div>
+
+                    <div class="dashboard-count">
+                        ₹{{ total_revenue }}
+                    </div>
+
+                    <p class="dashboard-text">
+                        Total Revenue
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <hr>
+
+    <div class="action-section">
+
+        <a href="/admin/profile"
+           class="btn btn-primary action-btn">
+
+            👤 My Profile
+
+        </a>
+
+        <a href="/admin/add-item"
+           class="btn btn-success action-btn">
+
+            ➕ Add Product
+
+        </a>
+
+        <a href="/admin/item-list"
+           class="btn btn-warning action-btn">
+
+            📦 View Products
+
+        </a>
+
+        <a href="/admin/orders"
+           class="btn btn-info action-btn">
+
+            🚚 Manage Orders
+
+        </a>
+
+        <a href="/admin-logout"
+           class="btn btn-danger action-btn">
+
+            🚪 Logout
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

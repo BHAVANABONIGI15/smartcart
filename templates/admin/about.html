@@ -1,0 +1,338 @@
+{% extends 'base.html' %}
+
+{% block title %}About SmartCart{% endblock %}
+
+{% block content %}
+
+<style>
+
+.hero-title{
+    font-size:52px;
+    font-weight:900;
+    color:#ffffff;
+    letter-spacing:1px;
+    text-shadow:
+    2px 2px 0px #000,
+    4px 4px 12px rgba(0,0,0,0.6);
+    margin-bottom:15px;
+}
+
+.hero-subtitle{
+    color:#f8fafc;
+    font-size:20px;
+    font-weight:500;
+    margin-bottom:0;
+}
+
+.about-content{
+    font-size:16px;
+    line-height:1.8;
+}
+
+.stats-box{
+    padding:20px;
+}
+
+.stats-box h2{
+    color:#ff9900;
+    font-weight:800;
+}
+
+.feature-card{
+    border:none;
+    border-radius:15px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    height:100%;
+    transition:0.3s;
+}
+
+.feature-card:hover{
+    transform:translateY(-5px);
+}
+
+@media(max-width:768px){
+
+    .card-body{
+        padding:20px !important;
+    }
+
+    .hero-title{
+        font-size:34px;
+        line-height:1.3;
+    }
+
+    .hero-subtitle{
+        font-size:16px;
+    }
+
+    .stats-box h2{
+        font-size:30px;
+    }
+
+    .about-content{
+        font-size:15px;
+    }
+
+    .feature-card{
+        margin-bottom:15px;
+    }
+
+}
+
+</style>
+
+<div class="container mt-5 mb-5">
+
+    <div class="card border-0 shadow-lg"
+         style="
+         border-radius:20px;
+         overflow:hidden;">
+
+        <!-- Header Section -->
+
+        <div style="
+        background:linear-gradient(135deg,#131921,#232f3e);
+        text-align:center;
+        padding:60px 30px;">
+
+            <h1 class="hero-title">
+
+                🛒 About SmartCart
+
+            </h1>
+
+            <p class="hero-subtitle">
+
+                Smart Shopping Made Simple
+
+            </p>
+
+        </div>
+
+        <!-- Main Content -->
+
+        <div class="card-body p-5">
+
+            <div class="row">
+
+                <div class="col-md-6 mb-4">
+
+                    <h3 style="
+                    color:#232f3e;
+                    font-weight:700;">
+
+                        🚀 Our Platform
+
+                    </h3>
+
+                    <p class="about-content">
+
+                        SmartCart is a modern e-commerce and product
+                        management platform built using Flask,
+                        MySQL, HTML, CSS and Bootstrap.
+
+                    </p>
+
+                    <p class="about-content">
+
+                        The platform provides a seamless shopping
+                        experience with secure authentication,
+                        online payments, order management and
+                        product browsing.
+
+                    </p>
+
+                </div>
+
+                <div class="col-md-6 mb-4">
+
+                    <h3 style="
+                    color:#232f3e;
+                    font-weight:700;">
+
+                        ✨ Key Features
+
+                    </h3>
+
+                    <ul style="
+                    line-height:2;
+                    font-size:16px;">
+
+                        <li>🛍 Product Management</li>
+
+                        <li>🔒 Secure User Authentication</li>
+
+                        <li>🛒 Smart Shopping Cart</li>
+
+                        <li>💳 Razorpay Payment Integration</li>
+
+                        <li>📦 Order Tracking</li>
+
+                        <li>📄 Invoice Download</li>
+
+                        <li>📊 Admin Dashboard</li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <hr class="my-4">
+
+            <!-- Statistics -->
+
+            <div class="row text-center">
+
+                <div class="col-md-4 mb-3">
+
+                    <div class="feature-card">
+
+                        <div class="stats-box">
+
+                            <h2>
+
+                                100+
+
+                            </h2>
+
+                            <p>
+
+                                Products Available
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <div class="feature-card">
+
+                        <div class="stats-box">
+
+                            <h2>
+
+                                24/7
+
+                            </h2>
+
+                            <p>
+
+                                Customer Support
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <div class="feature-card">
+
+                        <div class="stats-box">
+
+                            <h2>
+
+                                100%
+
+                            </h2>
+
+                            <p>
+
+                                Secure Payments
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <hr class="my-4">
+
+            <!-- Mission -->
+
+            <div class="text-center">
+
+                <h3 style="
+                color:#232f3e;
+                font-weight:700;">
+
+                    🎯 Our Mission
+
+                </h3>
+
+                <p class="about-content"
+                   style="
+                   max-width:800px;
+                   margin:auto;">
+
+                    Our mission is to make online shopping
+                    simple, secure and enjoyable while providing
+                    customers with quality products and excellent
+                    service at affordable prices.
+
+                </p>
+
+            </div>
+
+            <hr class="my-4">
+
+            <!-- Developer -->
+
+            <div class="text-center">
+
+                <h3 style="
+                color:#232f3e;
+                font-weight:700;">
+
+                    👩‍💻 Developed By
+
+                </h3>
+
+                <h4 style="
+                color:#ff9900;
+                font-weight:800;">
+
+                    Bhavana Bonigi
+
+                </h4>
+
+                <p class="text-muted">
+
+                    Full Stack Python Developer
+
+                </p>
+
+                <a href="/"
+                   class="btn"
+                   style="
+                   background:#ff9900;
+                   color:black;
+                   font-weight:700;
+                   padding:12px 28px;
+                   border-radius:10px;">
+
+                    🏠 Back to Home
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
