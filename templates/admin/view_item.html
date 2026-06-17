@@ -11,11 +11,14 @@
     border-radius:18px;
     overflow:hidden;
     box-shadow:0 8px 20px rgba(0,0,0,0.12);
+    width:100%;
+    max-width:1200px;
+    margin:auto;
 }
 
 .product-header{
     background:linear-gradient(135deg,#131921,#232f3e);
-    padding:25px;
+    padding:35px;
     text-align:center;
 }
 
@@ -32,8 +35,9 @@
 }
 
 .product-image{
-    max-height:280px;
+    max-height:400px;
     max-width:100%;
+    object-fit:contain;
     border-radius:15px;
     border:1px solid #e5e7eb;
     padding:10px;
@@ -57,6 +61,7 @@
     padding:10px 25px;
     border-radius:10px;
     font-weight:700;
+    margin:5px;
 }
 
 .back-btn{
@@ -73,8 +78,6 @@
     color:white;
 }
 
-/* Mobile Responsive */
-
 @media(max-width:768px){
 
     .product-header{
@@ -82,15 +85,7 @@
     }
 
     .product-header h3{
-        font-size:24px;
-    }
-
-    .product-header p{
-        font-size:13px;
-    }
-
-    .card-body{
-        padding:20px !important;
+        font-size:22px;
     }
 
     .product-image{
@@ -111,36 +106,29 @@
 
 </style>
 
-<div class="container">
+<div class="container-fluid">
 
     <div class="row justify-content-center">
 
-        <div class="col-lg-8 col-md-10 col-sm-12">
+        <div class="col-lg-10 col-md-11 col-sm-12 col-12">
 
             <div class="card product-card mt-4">
 
-                <!-- Header -->
-
                 <div class="product-header">
 
-                    <h3>
-                        📦 Product Details
-                    </h3>
+                    <h3>📦 Product Details</h3>
 
-                    <p>
-                        View complete product information
-                    </p>
+                    <p>View complete product information</p>
 
                 </div>
-
-                <!-- Product Details -->
 
                 <div class="card-body p-4">
 
                     <div class="text-center mb-4">
 
                         <img src="/static/uploads/product_images/{{ product.image }}"
-                             class="img-fluid product-image">
+                             class="img-fluid product-image"
+                             alt="{{ product.name }}">
 
                     </div>
 
@@ -174,7 +162,7 @@
 
                         </div>
 
-                        <div class="col-md-12 mb-3">
+                        <div class="col-12 mb-3">
 
                             <div class="info-box">
 
@@ -188,25 +176,23 @@
 
                         </div>
 
-                        <div class="col-md-12 mb-4">
+                        <div class="col-12 mb-4">
 
                             <div class="price-box">
 
-                                <strong style="font-size:18px;">
+                                <strong style="font-size:20px;">
                                     💰 Price
                                 </strong>
 
-                                <h3 class="mt-2 mb-0 text-success">
+                                <h2 class="mt-2 mb-0 text-success">
                                     ₹{{ product.price }}
-                                </h3>
+                                </h2>
 
                             </div>
 
                         </div>
 
                     </div>
-
-                    <!-- Buttons -->
 
                     <div class="text-center mb-4">
 
